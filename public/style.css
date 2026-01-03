@@ -167,3 +167,63 @@ footer {
 .stars span.active {
   color: #3483fa;
 }
+.stars span {
+  font-size: 22px;
+  color: #ddd;
+  cursor: pointer;
+  transition: transform 0.15s ease, color 0.15s ease;
+}
+
+.stars span:hover {
+  transform: scale(1.2);
+}
+
+.stars span.active {
+  color: #3483fa;
+}
+
+.rating {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.score {
+  font-weight: 500;
+}
+
+.reviews {
+  color: #3483fa;
+  cursor: pointer;
+}
+.reviews-container {
+  max-width: 1200px;
+  margin: 20px auto;
+  background: #fff;
+  padding: 20px;
+}
+
+.review {
+  border-bottom: 1px solid #eee;
+  padding: 12px 0;
+  font-size: 14px;
+}
+
+.review-text {
+  max-height: 38px;
+  overflow: hidden;
+  transition: max-height 0.3s ease;
+}
+
+.review.expanded .review-text {
+  max-height: 200px;
+}
+
+.expand-btn {
+  background: none;
+  border: none;
+  color: #3483fa;
+  cursor: pointer;
+  padding: 0;
+  margin-top: 6px;
+}

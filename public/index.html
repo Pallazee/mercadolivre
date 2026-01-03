@@ -89,11 +89,40 @@
   </div>
 
 </div>
+<div class="reviews-container">
+  <h3>Avaliações do produto</h3>
+
+  <div class="review">
+    ⭐⭐⭐⭐⭐
+    <strong>Ana Paula</strong> – São Paulo/SP
+    <p class="review-text">
+      Produto chegou rápido e fez sucesso na festa, recomendo!
+    </p>
+    <button class="expand-btn">Ver mais</button>
+  </div>
+
+  <div class="review">
+    ⭐⭐⭐⭐☆
+    <strong>Ricardo Mendes</strong> – Belo Horizonte/MG
+    <p class="review-text">
+      Boa qualidade, espuma dura bastante. Compra segura.
+    </p>
+    <button class="expand-btn">Ver mais</button>
+  </div>
+
+  <div class="review">
+    ⭐⭐⭐⭐⭐
+    <strong>Juliana Costa</strong> – Curitiba/PR
+    <p class="review-text">
+      Chegou antes do prazo, produto igual anúncio.
+    </p>
+    <button class="expand-btn">Ver mais</button>
+  </div>
+</div>
 
 <footer>
   © 2026 - Compra segura | Mercado Pago
 </footer>
-
 <script>
 let freteValor = 0;
 
@@ -129,41 +158,57 @@ function comprar() {
     else alert("Erro ao iniciar pagamento");
   });
 }
+
+// ===== SISTEMA DE ESTRELAS COM MÉDIA REAL =====
 const stars = document.querySelectorAll("#stars span");
 const score = document.getElementById("score");
 
-let currentRating = 4.7;
+// avaliações iniciais (simulando ML)
+let ratings = [5, 5, 4, 5, 4, 5, 5, 4, 5, 5, 4, 5, 5, 5, 4, 5, 5, 5];
 
-// pinta estrelas iniciais (4.7 ≈ 5 estrelas)
-paintStars(Math.round(currentRating));
+function calcularMedia() {
+  const total = ratings.reduce((a, b) => a + b, 0);
+  return (total / ratings.length).toFixed(1);
+}
 
-stars.forEach(star => {
-  star.addEventListener("mouseover", () => {
-    paintStars(star.dataset.value);
-  });
-
-  star.addEventListener("mouseout", () => {
-    paintStars(Math.round(currentRating));
-  });
-
-  star.addEventListener("click", () => {
-    currentRating = star.dataset.value;
-    score.innerText = currentRating;
-    paintStars(currentRating);
-  });
-});
-
-function paintStars(value) {
+function pintarEstrelas(valor) {
   stars.forEach(star => {
-    if (star.dataset.value <= value) {
-      star.classList.add("active");
-    } else {
-      star.classList.remove("active");
-    }
+    star.classList.toggle("active", star.dataset.value <= valor);
   });
 }
 
+// inicialização
+score.innerText = calcularMedia();
+pintarEstrelas(Math.round(calcularMedia()));
+
+stars.forEach(star => {
+  star.addEventListener("mouseover", () => {
+    pintarEstrelas(star.dataset.value);
+  });
+
+  star.addEventListener("mouseout", () => {
+    pintarEstrelas(Math.round(calcularMedia()));
+  });
+
+  star.addEventListener("click", () => {
+    ratings.push(Number(star.dataset.value));
+    score.innerText = calcularMedia();
+    pintarEstrelas(Math.round(calcularMedia()));
+  });
+});
+
+// ===== EXPANDIR / RECOLHER REVIEWS =====
+document.querySelectorAll(".expand-btn").forEach(btn => {
+  btn.addEventListener("click", () => {
+    const review = btn.parentElement;
+    review.classList.toggle("expanded");
+    btn.innerText = review.classList.contains("expanded")
+      ? "Ver menos"
+      : "Ver mais";
+  });
+});
 </script>
+
 
 </body>
 </html>
