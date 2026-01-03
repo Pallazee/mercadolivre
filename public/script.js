@@ -71,3 +71,27 @@ function goPage(page) {
 renderStars();
 renderReviews();
 renderPagination();
+// ===== PAGAMENTO (JÁ EXISTENTE) =====
+function comprar() {
+  fetch('/create_preference', {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json'
+    },
+    body: JSON.stringify({
+      frete: 0
+    })
+  })
+  .then(res => res.json())
+  .then(data => {
+    if (!data.init_point) {
+      alert("Erro ao iniciar pagamento");
+      return;
+    }
+    window.location.href = data.init_point;
+  })
+  .catch(err => {
+    console.error(err);
+    alert("Erro de conexão com o servidor");
+  });
+}
