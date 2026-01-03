@@ -48,4 +48,10 @@ app.post('/create_preference', async (req, res) => {
     console.error(error);
     res.status(500).json({ error: "Erro no pagamento" });
   }
+  const PORT = process.env.PORT || 3333;
+
+app.listen(PORT, () => {
+  console.log(`🚀 Servidor rodando na porta ${PORT}`);
+});
+
 });
