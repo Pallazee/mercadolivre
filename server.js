@@ -1,23 +1,11 @@
 console.log("🟡 Iniciando servidor...");
 
 const express = require('express');
-console.log("🟢 Express carregado");
-
-const cors = require('cors');
-console.log("🟢 Cors carregado");
-
-const mercadopago = require('mercadopago');
-console.log("🟢 MercadoPago lib carregada");
-
-require('dotenv').config();
-console.log("🟢 Dotenv carregado");
-
-console.log("🔑 TOKEN:", process.env.MP_ACCESS_TOKEN ? "OK" : "NÃO ENCONTRADO");
-
-const express = require('express');
 const cors = require('cors');
 const mercadopago = require('mercadopago');
 require('dotenv').config();
+
+console.log("🟢 Dependências carregadas");
 
 const app = express();
 
@@ -31,15 +19,15 @@ if (!process.env.MP_ACCESS_TOKEN) {
   mercadopago.configure({
     access_token: process.env.MP_ACCESS_TOKEN
   });
+  console.log("🔑 Mercado Pago token OK");
 }
 
-
-// rota de teste (pra saber se o backend tá vivo)
+// rota de teste
 app.get('/test', (req, res) => {
   res.send('🔥 Backend funcionando');
 });
 
-// cria preferência de pagamento
+// rota de pagamento
 app.post('/create_preference', async (req, res) => {
   try {
     const frete = req.body.frete || 0;
@@ -52,11 +40,6 @@ app.post('/create_preference', async (req, res) => {
           quantity: 1
         }
       ],
-      back_urls: {
-        success: "https://mercadolivre-zlq8.onrender.com",
-        failure: "https://mercadolivre-zlq8.onrender.com",
-        pending: "https://mercadolivre-zlq8.onrender.com"
-      },
       auto_return: "approved"
     };
 
@@ -65,14 +48,14 @@ app.post('/create_preference', async (req, res) => {
     res.json({
       init_point: response.body.init_point
     });
-  } catch (error) {
-    console.error(error);
-    res.status(500).json({ error: "Erro no pagamento" });
-  }
-  const PORT = process.env.PORT || 3333;
 
-app.listen(PORT, () => {
-  console.log(`🚀 Servidor rodando na porta ${PORT}`);
+  } catch (error) {
+    console.error("❌ Erro MP:", error);
+    res.status(500).json({ error: "Erro ao criar pagamento" });
+  }
 });
 
+const PORT = process.env.PORT || 3333;
+app.listen(PORT, () => {
+  console.log(`🚀 Servidor rodando na porta ${PORT}`);
 });
