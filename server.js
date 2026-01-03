@@ -1,3 +1,19 @@
+console.log("🟡 Iniciando servidor...");
+
+const express = require('express');
+console.log("🟢 Express carregado");
+
+const cors = require('cors');
+console.log("🟢 Cors carregado");
+
+const mercadopago = require('mercadopago');
+console.log("🟢 MercadoPago lib carregada");
+
+require('dotenv').config();
+console.log("🟢 Dotenv carregado");
+
+console.log("🔑 TOKEN:", process.env.MP_ACCESS_TOKEN ? "OK" : "NÃO ENCONTRADO");
+
 const express = require('express');
 const cors = require('cors');
 const mercadopago = require('mercadopago');
@@ -9,9 +25,14 @@ app.use(cors());
 app.use(express.json());
 app.use(express.static('public'));
 
-mercadopago.configure({
-  access_token: process.env.MP_ACCESS_TOKEN
-});
+if (!process.env.MP_ACCESS_TOKEN) {
+  console.error("❌ MP_ACCESS_TOKEN NÃO DEFINIDO");
+} else {
+  mercadopago.configure({
+    access_token: process.env.MP_ACCESS_TOKEN
+  });
+}
+
 
 // rota de teste (pra saber se o backend tá vivo)
 app.get('/test', (req, res) => {
