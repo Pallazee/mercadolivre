@@ -49,6 +49,7 @@
 
     <div class="title-row">
       <h1>Kit 05 Espuma de Carnaval da Alegria – 400ml</h1>
+      <span class="badge-sold">🔥 +500 vendidos</span>
       <div class="favorite" onclick="toggleFavorite()">❤</div>
     </div>
 
@@ -92,33 +93,13 @@
 <div class="reviews-container">
   <h3>Avaliações do produto</h3>
 
-  <div class="review">
-    ⭐⭐⭐⭐⭐
-    <strong>Ana Paula</strong> – São Paulo/SP
-    <p class="review-text">
-      Produto chegou rápido e fez sucesso na festa, recomendo!
-    </p>
-    <button class="expand-btn">Ver mais</button>
-  </div>
+  <div id="reviews-list"></div>
 
-  <div class="review">
-    ⭐⭐⭐⭐☆
-    <strong>Ricardo Mendes</strong> – Belo Horizonte/MG
-    <p class="review-text">
-      Boa qualidade, espuma dura bastante. Compra segura.
-    </p>
-    <button class="expand-btn">Ver mais</button>
-  </div>
-
-  <div class="review">
-    ⭐⭐⭐⭐⭐
-    <strong>Juliana Costa</strong> – Curitiba/PR
-    <p class="review-text">
-      Chegou antes do prazo, produto igual anúncio.
-    </p>
-    <button class="expand-btn">Ver mais</button>
-  </div>
+  <button id="loadMore" class="load-more">
+    Ver mais avaliações
+  </button>
 </div>
+
 
 <footer>
   © 2026 - Compra segura | Mercado Pago
@@ -207,6 +188,49 @@ document.querySelectorAll(".expand-btn").forEach(btn => {
       : "Ver mais";
   });
 });
+// ===== REVIEWS PAGINADOS =====
+const reviewsData = [
+  { stars: "⭐⭐⭐⭐⭐", name: "Ana Paula", city: "São Paulo/SP", text: "Produto chegou rápido e fez sucesso na festa!" },
+  { stars: "⭐⭐⭐⭐☆", name: "Ricardo Mendes", city: "Belo Horizonte/MG", text: "Boa qualidade, espuma dura bastante." },
+  { stars: "⭐⭐⭐⭐⭐", name: "Juliana Costa", city: "Curitiba/PR", text: "Chegou antes do prazo, produto igual anúncio." },
+  { stars: "⭐⭐⭐⭐⭐", name: "Marcos Vinícius", city: "Rio de Janeiro/RJ", text: "Ótimo custo-benefício, recomendo." },
+  { stars: "⭐⭐⭐⭐⭐", name: "Fernanda Lopes", city: "Campinas/SP", text: "Vendedor confiável, comprarei novamente." },
+  { stars: "⭐⭐⭐⭐☆", name: "Lucas Andrade", city: "Fortaleza/CE", text: "Entrega rápida, produto aprovado." },
+  { stars: "⭐⭐⭐⭐⭐", name: "Paula Nunes", city: "Porto Alegre/RS", text: "Excelente qualidade, festa garantida." }
+];
+
+let reviewsIndex = 0;
+const reviewsPerPage = 3;
+
+const reviewsList = document.getElementById("reviews-list");
+const loadMoreBtn = document.getElementById("loadMore");
+
+function renderReviews() {
+  const slice = reviewsData.slice(reviewsIndex, reviewsIndex + reviewsPerPage);
+
+  slice.forEach(r => {
+    const div = document.createElement("div");
+    div.className = "review";
+    div.innerHTML = `
+      ${r.stars}
+      <strong>${r.name}</strong> – ${r.city}
+      <p class="review-text">${r.text}</p>
+    `;
+    reviewsList.appendChild(div);
+  });
+
+  reviewsIndex += reviewsPerPage;
+
+  if (reviewsIndex >= reviewsData.length) {
+    loadMoreBtn.style.display = "none";
+  }
+}
+
+loadMoreBtn.addEventListener("click", renderReviews);
+
+// inicial
+renderReviews();
+
 </script>
 
 
