@@ -30,9 +30,9 @@ app.post('/create_preference', async (req, res) => {
         }
       ],
       back_urls: {
-        success: "https://SEU_SITE_RENDER.onrender.com/success",
-        failure: "https://SEU_SITE_RENDER.onrender.com/failure",
-        pending: "https://SEU_SITE_RENDER.onrender.com/pending"
+        success: "https://mercadolivre-zlq8.onrender.com",
+        failure: "https://mercadolivre-zlq8.onrender.com",
+        pending: "https://mercadolivre-zlq8.onrender.com"
       },
       auto_return: "approved"
     };
