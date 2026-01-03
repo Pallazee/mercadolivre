@@ -2,241 +2,91 @@
 <html lang="pt-BR">
 <head>
   <meta charset="UTF-8">
-  <title>Kit 05 Espuma de Carnaval 400ml | Mercado Livre</title>
+  <title>Kit 6 Espumas de Carnaval | Mercado Livre</title>
 
-  <!-- Fonte semelhante ao Mercado Livre -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
 
-  <!-- CSS -->
   <link rel="stylesheet" href="style.css">
 </head>
 
 <body>
 
-<header class="ml-header">
-  Mercado Livre
-</header>
+<header class="ml-header">Mercado Livre</header>
 
 <nav class="breadcrumb">
-  <a href="#">Voltar</a>
-  <span>|</span>
-  <a href="#">Festas e Lembrancinhas</a>
-  <span>›</span>
-  <a href="#">Artigos para Festas</a>
-  <span>›</span>
-  <a href="#">Kits de Festa</a>
-  <span>›</span>
-  <span class="current">Aniversário</span>
+  <a href="#">Voltar</a> ›
+  <a href="#">Festas</a> ›
+  <a href="#">Artigos para Festas</a> ›
+  <span>Kit de Festa</span>
 </nav>
 
 <div class="ml-container">
 
   <!-- GALERIA -->
   <div class="ml-left">
-    <img id="imagemPrincipal" src="img1.jpg" alt="Produto">
+    <div class="zoom-container">
+      <img id="mainImage" src="img1.jpg">
+    </div>
 
     <div class="thumbs">
-      <img src="img1.jpg" onclick="trocarImagem(this.src)">
-      <img src="img2.jpg" onclick="trocarImagem(this.src)">
-      <img src="img3.jpg" onclick="trocarImagem(this.src)">
+      <img src="img1.jpg" onclick="changeImage(this.src)">
+      <img src="img2.jpg" onclick="changeImage(this.src)">
+      <img src="img3.jpg" onclick="changeImage(this.src)">
     </div>
   </div>
 
-  <!-- INFORMAÇÕES -->
+  <!-- INFO -->
   <div class="ml-center">
-<div class="sold-info">
-  <span class="condition">Novo</span>
-  <span class="divider">|</span>
-  <span class="sold">+100 vendidos</span>
-</div>
-    <div class="title-row">
-      <h1>Kit 05 Espuma de Carnaval da Alegria – 400ml</h1>
-      <span class="badge-sold">🔥 +500 vendidos</span>
-      <div class="favorite" onclick="toggleFavorite()">❤</div>
+
+    <div class="sold-badge">
+      Novo | <strong>+500 vendidos</strong>
     </div>
 
-   <div class="rating">
-  <div class="stars" id="stars">
-    <span data-value="1">★</span>
-    <span data-value="2">★</span>
-    <span data-value="3">★</span>
-    <span data-value="4">★</span>
-    <span data-value="5">★</span>
-  </div>
-  <span class="score" id="score">4.7</span>
-  <span class="reviews">(18)</span>
-</div>
+    <h1>Kit 6 Espumas De Carnaval Spray Neve</h1>
 
+    <div class="rating">
+      <div id="stars"></div>
+      <span id="score"></span>
+      <span>(<span id="totalReviews"></span>)</span>
+    </div>
 
-    <div class="price">R$ 79,90</div>
-    <div class="installments">em até 3x de R$ 26,63 sem juros</div>
+    <div class="price">R$ 77<span>80</span></div>
+    <div class="installments">12x R$ 7,66 sem juros</div>
 
     <div class="frete-box">
-      <span class="frete-gratis">Frete grátis</span>
-      <input id="cep" placeholder="Digite seu CEP">
-      <button class="link-btn" onclick="calcularFrete()">Calcular prazo</button>
-      <div id="freteResultado"></div>
+      <span class="frete">Frete grátis</span>
+      <input type="text" placeholder="Digite seu CEP">
+      <p class="prazo">Chega entre 3 e 7 dias úteis</p>
     </div>
 
     <div class="trust">
-      ✔ Produto com nota fiscal<br>
-      ✔ Envio rápido para todo o Brasil<br>
-      ✔ Pagamento 100% seguro
+      ✔ Compra Garantida<br>
+      ✔ Nota fiscal<br>
+      ✔ Mercado Pago
     </div>
-
   </div>
 
   <!-- COMPRA -->
   <div class="ml-right">
-    <button class="buy-btn" onclick="comprar()">Comprar agora</button>
+    <button class="buy-btn">Comprar agora</button>
   </div>
 
 </div>
-<div class="reviews-container">
+
+<section class="reviews">
   <h3>Avaliações do produto</h3>
 
-  <div id="reviews-list"></div>
+  <div id="reviewsContainer"></div>
 
-  <button id="loadMore" class="load-more">
-    Ver mais avaliações
-  </button>
-</div>
-
+  <div class="pagination" id="pagination"></div>
+</section>
 
 <footer>
-  © 2026 - Compra segura | Mercado Pago
+  © 2026 Compra segura | Mercado Pago
 </footer>
-<script>
-let freteValor = 0;
 
-function calcularFrete() {
-  const cep = document.getElementById("cep").value.replace("-", "");
-  const resultado = document.getElementById("freteResultado");
-
-  if (cep.length !== 8) {
-    resultado.innerHTML = "CEP inválido";
-    return;
-  }
-
-  resultado.innerHTML = "Chegará grátis entre 3 e 7 dias úteis";
-}
-
-function trocarImagem(src) {
-  document.getElementById("imagemPrincipal").src = src;
-}
-
-function toggleFavorite() {
-  document.querySelector('.favorite').classList.toggle('active');
-}
-
-function comprar() {
-  fetch('/create_preference', {
-    method: 'POST',
-    headers: { 'Content-Type': 'application/json' },
-    body: JSON.stringify({ frete: freteValor })
-  })
-  .then(res => res.json())
-  .then(data => {
-    if (data.init_point) window.location.href = data.init_point;
-    else alert("Erro ao iniciar pagamento");
-  });
-}
-
-// ===== SISTEMA DE ESTRELAS COM MÉDIA REAL =====
-const stars = document.querySelectorAll("#stars span");
-const score = document.getElementById("score");
-
-// avaliações iniciais (simulando ML)
-let ratings = [5, 5, 4, 5, 4, 5, 5, 4, 5, 5, 4, 5, 5, 5, 4, 5, 5, 5];
-
-function calcularMedia() {
-  const total = ratings.reduce((a, b) => a + b, 0);
-  return (total / ratings.length).toFixed(1);
-}
-
-function pintarEstrelas(valor) {
-  stars.forEach(star => {
-    star.classList.toggle("active", star.dataset.value <= valor);
-  });
-}
-
-// inicialização
-score.innerText = calcularMedia();
-pintarEstrelas(Math.round(calcularMedia()));
-
-stars.forEach(star => {
-  star.addEventListener("mouseover", () => {
-    pintarEstrelas(star.dataset.value);
-  });
-
-  star.addEventListener("mouseout", () => {
-    pintarEstrelas(Math.round(calcularMedia()));
-  });
-
-  star.addEventListener("click", () => {
-    ratings.push(Number(star.dataset.value));
-    score.innerText = calcularMedia();
-    pintarEstrelas(Math.round(calcularMedia()));
-  });
-});
-
-// ===== EXPANDIR / RECOLHER REVIEWS =====
-document.querySelectorAll(".expand-btn").forEach(btn => {
-  btn.addEventListener("click", () => {
-    const review = btn.parentElement;
-    review.classList.toggle("expanded");
-    btn.innerText = review.classList.contains("expanded")
-      ? "Ver menos"
-      : "Ver mais";
-  });
-});
-// ===== REVIEWS PAGINADOS =====
-const reviewsData = [
-  { stars: "⭐⭐⭐⭐⭐", name: "Ana Paula", city: "São Paulo/SP", text: "Produto chegou rápido e fez sucesso na festa!" },
-  { stars: "⭐⭐⭐⭐☆", name: "Ricardo Mendes", city: "Belo Horizonte/MG", text: "Boa qualidade, espuma dura bastante." },
-  { stars: "⭐⭐⭐⭐⭐", name: "Juliana Costa", city: "Curitiba/PR", text: "Chegou antes do prazo, produto igual anúncio." },
-  { stars: "⭐⭐⭐⭐⭐", name: "Marcos Vinícius", city: "Rio de Janeiro/RJ", text: "Ótimo custo-benefício, recomendo." },
-  { stars: "⭐⭐⭐⭐⭐", name: "Fernanda Lopes", city: "Campinas/SP", text: "Vendedor confiável, comprarei novamente." },
-  { stars: "⭐⭐⭐⭐☆", name: "Lucas Andrade", city: "Fortaleza/CE", text: "Entrega rápida, produto aprovado." },
-  { stars: "⭐⭐⭐⭐⭐", name: "Paula Nunes", city: "Porto Alegre/RS", text: "Excelente qualidade, festa garantida." }
-];
-
-let reviewsIndex = 0;
-const reviewsPerPage = 3;
-
-const reviewsList = document.getElementById("reviews-list");
-const loadMoreBtn = document.getElementById("loadMore");
-
-function renderReviews() {
-  const slice = reviewsData.slice(reviewsIndex, reviewsIndex + reviewsPerPage);
-
-  slice.forEach(r => {
-    const div = document.createElement("div");
-    div.className = "review";
-    div.innerHTML = `
-      ${r.stars}
-      <strong>${r.name}</strong> – ${r.city}
-      <p class="review-text">${r.text}</p>
-    `;
-    reviewsList.appendChild(div);
-  });
-
-  reviewsIndex += reviewsPerPage;
-
-  if (reviewsIndex >= reviewsData.length) {
-    loadMoreBtn.style.display = "none";
-  }
-}
-
-loadMoreBtn.addEventListener("click", renderReviews);
-
-// inicial
-renderReviews();
-
-</script>
-
-
+<script src="script.js"></script>
 </body>
 </html>
