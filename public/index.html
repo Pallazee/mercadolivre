@@ -94,6 +94,32 @@ footer {
     grid-template-columns: 1fr;
   }
 }
+.breadcrumb {
+  max-width: 1200px;
+  margin: 10px auto 0;
+  padding: 0 20px;
+  font-size: 13px;
+  color: #666;
+}
+
+.breadcrumb a {
+  color: #3483fa;
+  text-decoration: none;
+}
+
+.breadcrumb a:hover {
+  text-decoration: underline;
+}
+
+.breadcrumb span {
+  margin: 0 6px;
+}
+
+.breadcrumb .current {
+  color: #333;
+  font-weight: 500;
+}
+
 </style>
 
 </head>
@@ -103,6 +129,17 @@ footer {
 <header>
   Mercado Livre Style 😈
 </header>
+<nav class="breadcrumb">
+  <a href="#">Voltar</a>
+  <span>|</span>
+  <a href="#">Festas e Lembrancinhas</a>
+  <span>›</span>
+  <a href="#">Artigos para Festas</a>
+  <span>›</span>
+  <a href="#">Kits de Festa</a>
+  <span>›</span>
+  <span class="current">Aniversário</span>
+</nav>
 
 <div class="ml-container">
 
