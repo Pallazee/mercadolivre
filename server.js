@@ -36,15 +36,21 @@ app.post('/create_preference', async (req, res) => {
     console.log("🚚 Frete recebido:", frete);
 
     const preference = {
-      items: [
-        {
-          title: "Kit 05 Espuma de Carnaval 400ml",
-          unit_price: Number(79.90 + frete),
-          quantity: 1
-        }
-      ],
-      auto_return: "approved"
-    };
+  items: [
+    {
+      title: "Kit 05 Espuma de Carnaval 400ml",
+      unit_price: Number(79.90 + frete),
+      quantity: 1
+    }
+  ],
+  back_urls: {
+    success: "https://mercadolivre-zlq8.onrender.com",
+    failure: "https://mercadolivre-zlq8.onrender.com",
+    pending: "https://mercadolivre-zlq8.onrender.com"
+  },
+  auto_return: "approved"
+};
+
 
     console.log("📦 Preferência:", preference);
 
