@@ -52,11 +52,18 @@
       <div class="favorite" onclick="toggleFavorite()">❤</div>
     </div>
 
-    <div class="rating">
-      <span class="stars">★★★★☆</span>
-      <span class="score">4.7</span>
-      <span class="reviews">(18)</span>
-    </div>
+   <div class="rating">
+  <div class="stars" id="stars">
+    <span data-value="1">★</span>
+    <span data-value="2">★</span>
+    <span data-value="3">★</span>
+    <span data-value="4">★</span>
+    <span data-value="5">★</span>
+  </div>
+  <span class="score" id="score">4.7</span>
+  <span class="reviews">(18)</span>
+</div>
+
 
     <div class="price">R$ 79,90</div>
     <div class="installments">em até 3x de R$ 26,63 sem juros</div>
@@ -122,6 +129,40 @@ function comprar() {
     else alert("Erro ao iniciar pagamento");
   });
 }
+const stars = document.querySelectorAll("#stars span");
+const score = document.getElementById("score");
+
+let currentRating = 4.7;
+
+// pinta estrelas iniciais (4.7 ≈ 5 estrelas)
+paintStars(Math.round(currentRating));
+
+stars.forEach(star => {
+  star.addEventListener("mouseover", () => {
+    paintStars(star.dataset.value);
+  });
+
+  star.addEventListener("mouseout", () => {
+    paintStars(Math.round(currentRating));
+  });
+
+  star.addEventListener("click", () => {
+    currentRating = star.dataset.value;
+    score.innerText = currentRating;
+    paintStars(currentRating);
+  });
+});
+
+function paintStars(value) {
+  stars.forEach(star => {
+    if (star.dataset.value <= value) {
+      star.classList.add("active");
+    } else {
+      star.classList.remove("active");
+    }
+  });
+}
+
 </script>
 
 </body>
