@@ -1,102 +1,101 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
-
   <meta charset="UTF-8">
   <title>Kit 05 Espuma de Carnaval 400ml</title>
 
-    <style>
-  body {
-    font-family: 'Inter', Arial, sans-serif;
-    background: #ebebeb;
-    margin: 0;
-    padding: 0;
+  <!-- Fonte -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+body {
+  font-family: 'Inter', Arial, sans-serif;
+  background: #ebebeb;
+  margin: 0;
+  padding: 0;
+}
+
+header {
+  background: #fff159;
+  padding: 15px;
+  font-size: 22px;
+  font-weight: bold;
+}
+
+.ml-container {
+  max-width: 1200px;
+  margin: 20px auto;
+  background: #fff;
+  padding: 20px;
+  display: grid;
+  grid-template-columns: 420px 1fr 360px;
+  gap: 20px;
+}
+
+.ml-left img {
+  width: 100%;
+  border: 1px solid #ddd;
+}
+
+.title {
+  font-size: 22px;
+  font-weight: 600;
+  margin-bottom: 10px;
+}
+
+.price {
+  font-size: 36px;
+  font-weight: 600;
+  margin: 20px 0;
+}
+
+.installments {
+  color: #00a650;
+  margin-bottom: 20px;
+}
+
+.ml-right {
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  padding: 16px;
+}
+
+button {
+  width: 100%;
+  padding: 14px;
+  font-size: 16px;
+  background: #3483fa;
+  color: white;
+  border: none;
+  cursor: pointer;
+  border-radius: 6px;
+}
+
+button:hover {
+  background: #2968c8;
+}
+
+.trust {
+  margin-top: 20px;
+  font-size: 14px;
+  color: #555;
+}
+
+footer {
+  text-align: center;
+  font-size: 12px;
+  padding: 20px;
+  color: #777;
+}
+
+@media (max-width: 900px) {
+  .ml-container {
+    grid-template-columns: 1fr;
   }
+}
 </style>
 
-
-    header {
-      background: #fff159;
-      padding: 15px;
-      font-size: 22px;
-      font-weight: bold;
-    }
-
-    .container {
-      max-width: 1000px;
-      margin: 20px auto;
-      background: #fff;
-      padding: 20px;
-      display: flex;
-      gap: 30px;
-    }
-
-    .images {
-      flex: 1;
-    }
-
-    .images img {
-      width: 100%;
-      border: 1px solid #ddd;
-    }
-
-    .info {
-      flex: 1;
-    }
-
-    .title {
-      font-size: 22px;
-      margin-bottom: 10px;
-    }
-
-    .price {
-      font-size: 36px;
-      font-weight: bold;
-      margin: 20px 0;
-    }
-
-    .installments {
-      color: green;
-      margin-bottom: 20px;
-    }
-
-    button {
-      width: 100%;
-      padding: 15px;
-      font-size: 20px;
-      background: #3483fa;
-      color: white;
-      border: none;
-      cursor: pointer;
-      border-radius: 4px;
-    }
-
-    button:hover {
-      background: #2968c8;
-    }
-
-    .trust {
-      margin-top: 20px;
-      font-size: 14px;
-      color: #555;
-    }
-
-    footer {
-      text-align: center;
-      font-size: 12px;
-      padding: 20px;
-      color: #777;
-    }
-
-    @media (max-width: 768px) {
-      .container {
-        flex-direction: column;
-      }
-    }
-  </style>
 </head>
 
 <body>
@@ -105,94 +104,54 @@
   Mercado Livre Style 😈
 </header>
 
-<div class="container">
+<div class="ml-container">
 
-  <div class="images">
-  <img id="imagemPrincipal" src="img1.jpg" alt="Produto">
+  <!-- IMAGENS -->
+  <div class="ml-left">
+    <img id="imagemPrincipal" src="img1.jpg" alt="Produto">
 
-  <div style="display:flex;gap:10px;margin-top:10px;">
-    <img src="img1.jpg" width="80" style="cursor:pointer;border:1px solid #ddd;" onclick="trocarImagem(this.src)">
-    <img src="img2.jpg" width="80" style="cursor:pointer;border:1px solid #ddd;" onclick="trocarImagem(this.src)">
-    <img src="img3.jpg" width="80" style="cursor:pointer;border:1px solid #ddd;" onclick="trocarImagem(this.src)">
+    <div style="display:flex;gap:10px;margin-top:10px;">
+      <img src="img1.jpg" width="80" onclick="trocarImagem(this.src)" style="cursor:pointer;border:1px solid #ddd;">
+      <img src="img2.jpg" width="80" onclick="trocarImagem(this.src)" style="cursor:pointer;border:1px solid #ddd;">
+      <img src="img3.jpg" width="80" onclick="trocarImagem(this.src)" style="cursor:pointer;border:1px solid #ddd;">
+    </div>
   </div>
-</div>
 
+  <!-- INFO -->
+  <div class="ml-center">
+    <div class="title">Kit 05 Espuma de Carnaval da Alegria – 400ml</div>
 
-  <div class="info">
-    <div class="title">
-      Kit 05 Espuma de Carnaval da Alegria – 400ml
-    </div>
+    <div class="price">R$ 79,90</div>
 
-    <div class="price">
-      R$ 79,90
-    </div>
-
-    <div class="installments">
-      em até 3x de R$ 26,63 sem juros
-    </div>
+    <div class="installments">em até 3x de R$ 26,63 sem juros</div>
 
     <div style="margin:20px 0;">
-  <input 
-    type="text" 
-    id="cep" 
-    placeholder="Digite seu CEP"
-    style="width:100%;padding:10px;font-size:16px;"
-  >
-  <button onclick="calcularFrete()" style="margin-top:10px;">
-    Calcular frete
-  </button>
-</div>
+      <input id="cep" placeholder="Digite seu CEP"
+  style="
+    width:100%;
+    padding:10px;
+    border:1px solid #ddd;
+    border-radius:6px;
+    font-size:14px;
+  ">
+      <button onclick="calcularFrete()" style="margin-top:10px;background:none;color:#3483fa;">
+        Calcular prazo
+      </button>
+      <div id="freteResultado" style="margin-top:8px;font-size:14px;"></div>
+    </div>
 
-<div id="freteResultado" style="margin-bottom:20px;font-size:14px;"></div>
-
-<button onclick="comprar()">Comprar agora</button>
-
-
-    <div class="trust">
+    <div class="trust" style="font-size:14px;color:#555;">
       ✔ Produto com nota fiscal <br>
       ✔ Envio rápido para todo o Brasil <br>
       ✔ Pagamento 100% seguro via Mercado Pago
     </div>
   </div>
 
-</div>
-<div style="max-width:1000px;margin:20px auto;background:#fff;padding:20px;">
-  <h3 style="margin-bottom:15px;">Avaliações do produto</h3>
-
-  <div style="border-bottom:1px solid #ddd;padding:10px 0;">
-    ⭐⭐⭐⭐⭐  
-    <strong>Ana Paula</strong> – São Paulo/SP  
-    <div>Produto chegou rápido e fez sucesso na festa, recomendo!</div>
-    <small>há 3 dias</small>
+  <!-- COMPRA -->
+  <div class="ml-right">
+    <button onclick="comprar()">Comprar agora</button>
   </div>
 
-  <div style="border-bottom:1px solid #ddd;padding:10px 0;">
-    ⭐⭐⭐⭐⭐  
-    <strong>Ricardo Mendes</strong> – Belo Horizonte/MG  
-    <div>Boa qualidade, espuma dura bastante. Compra segura.</div>
-    <small>há 1 semana</small>
-  </div>
-
-  <div style="border-bottom:1px solid #ddd;padding:10px 0;">
-    ⭐⭐⭐⭐⭐  
-    <strong>Juliana Costa</strong> – Curitiba/PR  
-    <div>Chegou antes do prazo, produto igual anúncio.</div>
-    <small>há 2 semanas</small>
-  </div>
-
-  <div style="border-bottom:1px solid #ddd;padding:10px 0;">
-    ⭐⭐⭐⭐⭐  
-    <strong>Marcos Vinícius</strong> – Rio de Janeiro/RJ  
-    <div>Já comprei duas vezes, ótimo custo-benefício.</div>
-    <small>há 18 dias</small>
-  </div>
-
-  <div style="padding:10px 0;">
-    ⭐⭐⭐⭐⭐  
-    <strong>Fernanda Lopes</strong> – Campinas/SP  
-    <div>Vendedor confiável, comprarei novamente.</div>
-    <small>há 1 mês</small>
-  </div>
 </div>
 
 <footer>
@@ -211,10 +170,9 @@ function calcularFrete() {
     return;
   }
 
-  freteValor = 0;
-
   resultado.innerHTML = "🚚 Frete grátis • Entrega em 3 a 7 dias úteis";
 }
+
 function trocarImagem(src) {
   document.getElementById("imagemPrincipal").src = src;
 }
@@ -222,12 +180,8 @@ function trocarImagem(src) {
 function comprar() {
   fetch('/create_preference', {
     method: 'POST',
-    headers: {
-      'Content-Type': 'application/json'
-    },
-    body: JSON.stringify({
-      frete: freteValor
-    })
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify({ frete: freteValor })
   })
   .then(res => res.json())
   .then(data => {
@@ -236,16 +190,9 @@ function comprar() {
       return;
     }
     window.location.href = data.init_point;
-  })
-  .catch(() => {
-    alert("Erro de conexão com o servidor");
   });
 }
 </script>
-
-
-
-
 
 </body>
 </html>
