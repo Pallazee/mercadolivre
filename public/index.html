@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <title>Kit Espuma Carnaval</title>
+  <style>
+    body { font-family: Arial; margin: 0; padding: 20px; }
+    img { max-width: 100%; }
+    .price { font-size: 32px; font-weight: bold; margin: 20px 0; }
+    button {
+      background: #3483fa;
+      color: white;
+      border: none;
+      padding: 15px;
+      font-size: 20px;
+      cursor: pointer;
+      width: 100%;
+    }
+  </style>
+</head>
+<body>
+
+<h1>Kit 05 Espuma de Carnaval 400ml</h1>
+<img src="img1.jpg">
+
+<div class="price">R$ 79,90</div>
+
+<button onclick="comprar()">COMPRAR AGORA</button>
+
+<script>
+function comprar() {
+  fetch('/create_preference', { method: 'POST' })
+    .then(res => res.json())
+    .then(data => {
+      window.location.href = data.init_point;
+    });
+}
+</script>
+
+</body>
+</html>
