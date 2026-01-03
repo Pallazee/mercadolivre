@@ -30,30 +30,41 @@ app.get('/test', (req, res) => {
 // rota de pagamento
 app.post('/create_preference', async (req, res) => {
   try {
+    console.log("🟡 Criando pagamento...");
+
     const frete = req.body.frete || 0;
+    console.log("🚚 Frete recebido:", frete);
 
     const preference = {
       items: [
         {
           title: "Kit 05 Espuma de Carnaval 400ml",
-          unit_price: 79.90 + frete,
+          unit_price: Number(79.90 + frete),
           quantity: 1
         }
       ],
       auto_return: "approved"
     };
 
+    console.log("📦 Preferência:", preference);
+
     const response = await mercadopago.preferences.create(preference);
+
+    console.log("✅ Resposta Mercado Pago:", response.body);
 
     res.json({
       init_point: response.body.init_point
     });
 
   } catch (error) {
-    console.error("❌ Erro MP:", error);
-    res.status(500).json({ error: "Erro ao criar pagamento" });
+    console.error("❌ ERRO AO CRIAR PAGAMENTO:", error);
+    res.status(500).json({
+      error: "Falha ao criar pagamento",
+      details: error.message
+    });
   }
 });
+
 
 const PORT = process.env.PORT || 3333;
 app.listen(PORT, () => {
