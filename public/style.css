@@ -245,3 +245,15 @@ footer {
   cursor: pointer;
   margin-top: 12px;
 }
+.sold-info {
+  font-size: 14px;
+  color: #737373;
+  margin-bottom: 6px;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.sold-info .divider {
+  color: #bfbfbf;
+}
