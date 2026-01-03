@@ -159,19 +159,9 @@ function calcularFrete() {
     return;
   }
 
-  const regiao = cep.substring(0, 2);
+  freteValor = 0;
 
-  // lógica simples por região
-  if (regiao >= 10 && regiao <= 39) {
-    freteValor = 19.90;
-    resultado.innerHTML = "🚚 Frete: R$ 19,90 • Entrega em 3 a 5 dias";
-  } else if (regiao >= 40 && regiao <= 69) {
-    freteValor = 24.90;
-    resultado.innerHTML = "🚚 Frete: R$ 24,90 • Entrega em 5 a 7 dias";
-  } else {
-    freteValor = 29.90;
-    resultado.innerHTML = "🚚 Frete: R$ 29,90 • Entrega em 7 a 10 dias";
-  }
+  resultado.innerHTML = "🚚 Frete grátis • Entrega em 3 a 7 dias úteis";
 }
 
 function comprar() {
@@ -193,10 +183,13 @@ function comprar() {
     window.location.href = data.init_point;
   })
   .catch(() => {
-    alert("Erro de conexão");
+    alert("Erro de conexão com o servidor");
   });
 }
 </script>
+
+
+
 
 
 </body>
